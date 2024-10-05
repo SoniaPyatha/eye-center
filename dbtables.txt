@@ -1,0 +1,31 @@
+CREATE TABLE admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(45) UNIQUE NOT NULL,
+    password VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE patient (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fullname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    dob DATE NOT NULL,
+    gender ENUM('male', 'female', 'other') NOT NULL,
+    contact VARCHAR(20) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE booking ( id INT AUTO_INCREMENT PRIMARY KEY,
+    pid INT NOT null, 
+    `date` DATE NOT NULL,
+    service varchar(255) not null, 
+    `time` TIME NOT NULL, 
+    `booked` BOOLEAN DEFAULT false, 
+    FOREIGN KEY (pid) REFERENCES registration(id) 
+);
+
+CREATE TABLE doctor ( id INT AUTO_INCREMENT PRIMARY KEY, 
+    fullname VARCHAR(45) UNIQUE NOT NULL, 
+    qualification VARCHAR(45) NOT NULL, 
+    contact varchar(20) not null,
+    photo varchar(255) not null 
+);
